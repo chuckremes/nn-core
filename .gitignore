@@ -1,0 +1,9 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+*.tmproj
+.rbx
+
+*.rbc
+.redcar/
