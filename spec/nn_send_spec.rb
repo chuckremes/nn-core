@@ -1,0 +1,53 @@
+require 'spec_helper'
+
+module NNCore
+  describe "nn_send" do
+
+    context "given an initialized library and" do
+      before(:each) { LibNanomsg.nn_init }
+      after(:each) { LibNanomsg.nn_term }
+
+
+      context "given a valid socket" do
+        before(:each) do
+          LibNanomsg.nn_init
+          @socket = LibNanomsg.nn_socket(AF_SP, NN_PUB)
+        end
+
+        after(:each) do
+          LibNanomsg.nn_close(@socket)
+          LibNanomsg.nn_term
+        end
+
+        context "given a valid endpoint" do
+          before(:each) do
+            @endpoint = LibNanomsg.nn_bind(@socket, "inproc://some_endpoint")
+          end
+
+          it "returns the number of bytes sent" do
+            nbytes = LibNanomsg.nn_send(@socket, "ABC", 3, 0)
+            nbytes.should == 3
+          end
+        end
+
+        context "disconnected from all endpoints" do
+          it "returns the number of bytes queued" do
+            nbytes = LibNanomsg.nn_send(@socket, "ABC", 3, 0)
+            nbytes.should == 3
+          end
+        end
+      end
+
+      context "given an invalid socket" do
+
+        it "returns -1 and sets nn_errno to EBADF" do
+          rc = LibNanomsg.nn_send(0, "ABC", 3, 0)
+          rc.should == -1
+          LibNanomsg.nn_errno.should == EBADF
+        end
+
+      end
+
+    end
+  end
+end

@@ -1,0 +1,4 @@
+20130204 / 0.1.0
+	* Initial release. Wrapped the nanomsg library as of commit 
+		5ded934af0.
+		
