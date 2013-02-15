@@ -35,8 +35,6 @@ module NNCore
 
     attach_function :nn_version, [:pointer, :pointer, :pointer], :int
     
-    attach_function :nn_init, [], :int
-    attach_function :nn_term, [], :int
     attach_function :nn_errno, [], :int
     attach_function :nn_strerror, [:int], :string
     attach_function :nn_socket, [:int, :int], :int

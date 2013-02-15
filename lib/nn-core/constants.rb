@@ -32,6 +32,9 @@ module NNCore
   NN_SURVEY_ID = 6
   NN_SURVEYOR = (NN_SURVEY_ID * 16 + 0)
   NN_RESPONDENT = (NN_SURVEY_ID * 16 + 1)
+  
+  NN_BUS_ID = 7
+  NN_BUS = (NN_BUS_ID * 16 + 0)
 
   # Socket Option Levels (SOL)
   NN_SOL_SOCKET = 0
@@ -81,5 +84,5 @@ module NNCore
   EFSM = Errno::EFSM::Errno rescue NN_HAUSNUMERO + 54
 
   # Miscellaneous
-  NN_INPROCB_NAMELEN_MAX = 64
+  NN_SOCKADDR_MAX = 128
 end
