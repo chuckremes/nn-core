@@ -10,19 +10,14 @@ module NNCore
   describe "nn_connect" do
 
     context "given an initialized library and" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
-
 
       context "given a valid socket" do
         before(:each) do
-          LibNanomsg.nn_init
           @socket = LibNanomsg.nn_socket(AF_SP, NN_PUB)
         end
 
         after(:each) do
           LibNanomsg.nn_close(@socket)
-          LibNanomsg.nn_term
         end
 
         it "returns a non-zero endpoint number for a valid INPROC address" do
@@ -47,7 +42,7 @@ module NNCore
         end
 
         it "returns -1 for an invalid INPROC address (too long)" do
-          rc = LibNanomsg.nn_connect(@socket, "inproc://#{'a' * (NN_INPROCB_NAMELEN_MAX + 1)}")
+          rc = LibNanomsg.nn_connect(@socket, "inproc://#{'a' * (NN_SOCKADDR_MAX + 1)}")
           rc.should == -1
           LibNanomsg.nn_errno.should == ENAMETOOLONG
         end

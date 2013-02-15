@@ -4,8 +4,6 @@ module NNCore
   describe "nn_socket" do
 
     context "given an initialized library and" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
 
       PROTOCOLS.keys.each do |protocol|
 
@@ -13,20 +11,22 @@ module NNCore
 
           it "returns a non-zero file descriptor for the socket" do
             @socket = LibNanomsg.nn_socket(AF_SP, PROTOCOLS[protocol])
-            
+
             @socket.should == 0
-            
+
             LibNanomsg.nn_close(@socket)
           end
         end
 
         context "given a supported protocol #{protocol} and address family AF_SP_RAW" do
 
-          it "returns -1 and sets nn_errno to EINVAL" do
-            @socket = LibNanomsg.nn_socket(AF_SP_RAW, PROTOCOLS[protocol])
-            
-            @socket.should == -1
-            LibNanomsg.nn_errno.should == EINVAL
+          if RAW_UNSUPPORTED.include?(protocol)
+            it "returns -1 and sets nn_errno to EINVAL" do
+              @socket = LibNanomsg.nn_socket(AF_SP_RAW, PROTOCOLS[protocol])
+
+              @socket.should == -1
+              LibNanomsg.nn_errno.should == EINVAL
+            end
           end
         end
 

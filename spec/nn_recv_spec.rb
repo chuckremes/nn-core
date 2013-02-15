@@ -4,13 +4,9 @@ module NNCore
   describe "nn_recv" do
 
     context "given an initialized library and" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
-
 
       context "given a valid connected sender and receiver socket pair" do
         before(:each) do
-          LibNanomsg.nn_init
           @socket = LibNanomsg.nn_socket(AF_SP, NN_PAIR)
           @sender = LibNanomsg.nn_socket(AF_SP, NN_PAIR)
           @endpoint = LibNanomsg.nn_bind(@socket, "inproc://some_endpoint")
@@ -20,7 +16,6 @@ module NNCore
         after(:each) do
           LibNanomsg.nn_close(@socket)
           LibNanomsg.nn_close(@sender)
-          LibNanomsg.nn_term
         end
 
         context "given a pre-allocated buffer" do
@@ -37,7 +32,6 @@ module NNCore
         end
         
         context "given no pre-allocated buffer" do
-          
 
           it "returns the number of bytes received and returns the buffer" do
             string = "ABC"

@@ -4,8 +4,6 @@ module NNCore
   describe "nn_bind" do
 
     context "given an initialized library" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
 
       it "returns 0 and populates the pointers with the major, minor and patch version numbers" do
         major = FFI::MemoryPointer.new(:int)

@@ -4,19 +4,14 @@ module NNCore
   describe "nn_send" do
 
     context "given an initialized library and" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
-
 
       context "given a valid socket" do
         before(:each) do
-          LibNanomsg.nn_init
           @socket = LibNanomsg.nn_socket(AF_SP, NN_PUB)
         end
 
         after(:each) do
           LibNanomsg.nn_close(@socket)
-          LibNanomsg.nn_term
         end
 
         context "given a valid endpoint" do

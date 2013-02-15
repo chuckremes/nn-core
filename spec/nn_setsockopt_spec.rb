@@ -4,13 +4,9 @@ module NNCore
   describe "nn_setsockopt" do
 
     context "given an initialized library and" do
-      before(:each) { LibNanomsg.nn_init }
-      after(:each) { LibNanomsg.nn_term }
-
 
       context "given a valid socket" do
         before(:each) do
-          LibNanomsg.nn_init
           @socket = LibNanomsg.nn_socket(AF_SP, NN_PUB)
           @option = FFI::MemoryPointer.new(:int32)
           @size = FFI::MemoryPointer.new :size_t
@@ -19,7 +15,6 @@ module NNCore
 
         after(:each) do
           LibNanomsg.nn_close(@socket)
-          LibNanomsg.nn_term
         end
 
         SOCKET_OPTIONS.keys.each do |socket_option|
