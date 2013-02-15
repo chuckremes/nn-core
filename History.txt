@@ -1,3 +1,10 @@
+20130215 / 0.1.5
+	*	libnanomsg has removed the nn_init and nn_term functions. Updated
+		specs to remove those features.
+		
+	*	Added NN_BUS protocol.
+
+
 20130204 / 0.1.0
 	* Initial release. Wrapped the nanomsg library as of commit 
 		5ded934af0.
