@@ -53,35 +53,28 @@ module NNCore
           LibNanomsg.nn_errno.should == EINVAL
         end
 
-#        it "returns -1 for an invalid TCP address (missing port)" do
-#          rc = LibNanomsg.nn_connect(@socket, "tcp://*:")
-#          rc.should == -1
-#          LibNanomsg.nn_errno.should == EINVAL
-#        end
-#
-#        it "returns -1 for an invalid TCP address (non-numeric port)" do
-#          rc = LibNanomsg.nn_connect(@socket, "tcp://192.168.0.1:port")
-#          rc.should == -1
-#          LibNanomsg.nn_errno.should == EINVAL
-#        end
-#
-#        it "returns -1 for an invalid TCP address (port number is out of range)" do
-#          rc = LibNanomsg.nn_connect(@socket, "tcp://192.168.0.1:65536")
-#          rc.should == -1
-#          LibNanomsg.nn_errno.should == EINVAL
-#        end
+        it "returns -1 for an invalid TCP address (missing port)" do
+          rc = LibNanomsg.nn_connect(@socket, "tcp://*:")
+          rc.should == -1
+          LibNanomsg.nn_errno.should == EINVAL
+        end
+
+        it "returns -1 for an invalid TCP address (non-numeric port)" do
+          rc = LibNanomsg.nn_connect(@socket, "tcp://192.168.0.1:port")
+          rc.should == -1
+          LibNanomsg.nn_errno.should == EINVAL
+        end
+
+        it "returns -1 for an invalid TCP address (port number is out of range)" do
+          rc = LibNanomsg.nn_connect(@socket, "tcp://192.168.0.1:65536")
+          rc.should == -1
+          LibNanomsg.nn_errno.should == EINVAL
+        end
 
         it "returns -1 for an unsupported transport protocol" do
           rc = LibNanomsg.nn_connect(@socket, "zmq://192.168.0.1:65536")
           rc.should == -1
           LibNanomsg.nn_errno.should == EPROTONOSUPPORT
-        end
-
-        it "returns -1 for specifying a non-existent device using TCP transport" do
-          pending # currently fails
-          rc = LibNanomsg.nn_connect(@socket, "tcp://doesntexist:5555")
-          rc.should == -1
-          LibNanomsg.nn_errno.should == ENODEV
         end
 
         it "returns 2 when connecting twice to an existing endpoint" do
