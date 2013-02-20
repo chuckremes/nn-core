@@ -40,7 +40,10 @@ module NNCore
             buffer = FFI::MemoryPointer.new(:pointer)
             nbytes = LibNanomsg.nn_recv(@socket, buffer, NN_MSG, 0)
             nbytes.should == 3
-            buffer.get_pointer(0).read_string.should == string
+            
+            # important to pass +nbytes+ to #read_string since the sent string
+            # is not null-terminated
+            buffer.get_pointer(0).read_string(nbytes).should == string
           end
         end
       end
