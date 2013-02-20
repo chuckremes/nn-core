@@ -1,3 +1,16 @@
+20130220 / 0.1.6
+	* Several fixes for tcp string handling have made it to nanomsg trunk,
+		so I can now re-enable those specs.
+		
+	*	For MRI Ruby, add @blocking=true before all function attachments to instruct
+		the FFI gem to release the GIL.
+		
+	*	Fixed a nn_recv spec to only read a specific number of bytes from a received
+		string. Must note that the library does not null terminate strings on its
+		own so we need to be very careful how many bytes are read from received
+		strings.
+		
+
 20130215 / 0.1.5
 	*	libnanomsg has removed the nn_init and nn_term functions. Updated
 		specs to remove those features.
