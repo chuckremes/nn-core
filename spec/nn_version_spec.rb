@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module NNCore
-  describe "nn_bind" do
+  describe "nn_version" do
 
     context "given an initialized library" do
 
