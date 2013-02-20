@@ -33,11 +33,10 @@ module NNCore
       end
 
       context "given an unsupported address family" do
-
-        #        it "nn_socket returns -1 and sets nn_errno to EAFNOSUPPORT" do
-        #          LibNanomsg.nn_socket(0, NN_PUB).should == -1
-        #          LibNanomsg.nn_errno.should == EAFNOSUPPORT
-        #        end
+        it "nn_socket returns -1 and sets nn_errno to EAFNOSUPPORT" do
+          LibNanomsg.nn_socket(0, NN_PUB).should == -1
+          LibNanomsg.nn_errno.should == EAFNOSUPPORT
+        end
       end
 
       context "given an unsupported protocol and a supported address family" do
