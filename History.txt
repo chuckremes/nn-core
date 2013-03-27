@@ -1,3 +1,12 @@
+20130327 / 0.2.0
+	* Support nn_symbol function for setting up all constants in the binding.
+	
+	* Remove support for nn_version function.
+	
+	* Change #attach_function calls to use options hash for :blocking => true.
+	  This is cleaner and less noisy than all of the "@blocking = true" lines
+		before the #attach_function call.
+
 20130220 / 0.1.6
 	* Several fixes for tcp string handling have made it to nanomsg trunk,
 		so I can now re-enable those specs.
