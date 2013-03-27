@@ -33,41 +33,26 @@ module NNCore
     # Size_t not working properly on Windows
     find_type(:size_t) rescue typedef(:ulong, :size_t)
 
-    @blocking = true
-    attach_function :nn_version, [:pointer, :pointer, :pointer], :int
+    attach_function :nn_symbol, [:int, :pointer], :string, :blocking => true
     
-    @blocking = true
-    attach_function :nn_errno, [], :int
-    @blocking = true
-    attach_function :nn_strerror, [:int], :string
-    @blocking = true
-    attach_function :nn_socket, [:int, :int], :int
-    @blocking = true
-    attach_function :nn_close, [:int], :int
+    attach_function :nn_errno, [], :int, :blocking => true
+    attach_function :nn_strerror, [:int], :string, :blocking => true
+    attach_function :nn_socket, [:int, :int], :int, :blocking => true
+    attach_function :nn_close, [:int], :int, :blocking => true
     
-    @blocking = true
-    attach_function :nn_getsockopt, [:int, :int, :int, :pointer, :pointer], :int
-    @blocking = true
-    attach_function :nn_setsockopt, [:int, :int, :int, :pointer, :size_t], :int
-    @blocking = true
-    attach_function :nn_bind, [:int, :string], :int
-    @blocking = true
-    attach_function :nn_connect, [:int, :string], :int
-    @blocking = true
-    attach_function :nn_shutdown, [:int, :int], :int
-    @blocking = true
-    attach_function :nn_send, [:int, :pointer, :size_t, :int], :int
-    @blocking = true
-    attach_function :nn_recv, [:int, :pointer, :size_t, :int], :int
+    attach_function :nn_getsockopt, [:int, :int, :int, :pointer, :pointer], :int, :blocking => true
+    attach_function :nn_setsockopt, [:int, :int, :int, :pointer, :size_t], :int, :blocking => true
+    attach_function :nn_bind, [:int, :string], :int, :blocking => true
+    attach_function :nn_connect, [:int, :string], :int, :blocking => true
+    attach_function :nn_shutdown, [:int, :int], :int, :blocking => true
+    attach_function :nn_send, [:int, :pointer, :size_t, :int], :int, :blocking => true
+    attach_function :nn_recv, [:int, :pointer, :size_t, :int], :int, :blocking => true
+    attach_function :nn_term, [], :void, :blocking => true
 
     # functions for working with raw buffers
-    @blocking = true
-    attach_function :nn_sendmsg, [:int, :pointer, :int], :int
-    @blocking = true
-    attach_function :nn_recvmsg, [:int, :pointer, :int], :int
-    @blocking = true
-    attach_function :nn_allocmsg, [:size_t, :int], :pointer
-    @blocking = true
-    attach_function :nn_freemsg, [:pointer], :int        
+    attach_function :nn_sendmsg, [:int, :pointer, :int], :int, :blocking => true
+    attach_function :nn_recvmsg, [:int, :pointer, :int], :int, :blocking => true
+    attach_function :nn_allocmsg, [:size_t, :int], :pointer, :blocking => true
+    attach_function :nn_freemsg, [:pointer], :int, :blocking => true
   end
 end
