@@ -20,8 +20,6 @@ module NNCore
     :NN_PAIR => NN_PAIR,
     :NN_REQ => NN_REQ,
     :NN_REP => NN_REP,
-    :NN_SOURCE => NN_SOURCE,
-    :NN_SINK => NN_SINK,
     :NN_PUSH => NN_PUSH,
     :NN_PULL => NN_PULL,
     :NN_SURVEYOR => NN_SURVEYOR,
@@ -35,5 +33,5 @@ module NNCore
   
   # Some protocols support the AF_SP_RAW address family, so we need to skip those
   # tests that are expecting a failure.
-  RAW_UNSUPPORTED = [:NN_PUB, :NN_SUB]
+  RAW_UNSUPPORTED = []
 end
