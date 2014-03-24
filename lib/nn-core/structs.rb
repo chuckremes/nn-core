@@ -77,7 +77,7 @@ module NNCore
         self[:msg_controllen] = value
       end
     end
-    
+
     module NNCMsgHdrLayout
       def self.included(base)
         base.class_eval do
@@ -113,6 +113,45 @@ module NNCore
 
       def cmsg_type=(type)
         self[:cmsg_type] = type
+      end
+    end
+
+    module NNPollFdLayout
+      def self.included(base)
+        base.class_eval do
+          layout :fd, :int,
+          :events, :short,
+          :revents, :short
+        end
+      end
+    end
+
+    # Struct for nn_poll
+    class NNPollFd < FFI::Struct
+      include NNPollFdLayout
+
+      def fd
+        self[:fd]
+      end
+
+      def fd=(socket)
+        self[:fd] = socket
+      end
+
+      def events
+        self[:events]
+      end
+
+      def events=(value)
+        self[:events] = value
+      end
+
+      def revents
+        self[:revents]
+      end
+
+      def revents=(value)
+        self[:revents] = value
       end
     end
 

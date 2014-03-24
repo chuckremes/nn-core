@@ -49,6 +49,8 @@ module NNCore
     attach_function :nn_recv, [:int, :pointer, :size_t, :int], :int, :blocking => true
     attach_function :nn_term, [], :void, :blocking => true
 
+    attach_function :nn_poll, [:pointer, :int, :int], :int, :blocking => true
+
     # functions for working with raw buffers
     attach_function :nn_sendmsg, [:int, :pointer, :int], :int, :blocking => true
     attach_function :nn_recvmsg, [:int, :pointer, :int], :int, :blocking => true
