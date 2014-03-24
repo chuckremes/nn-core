@@ -2,7 +2,7 @@
 module NNCore
   module LibNanomsg
     extend FFI::Library
-    
+
     begin
       # bias the library discovery to a path inside the gem first, then
       # to the usual system paths
@@ -34,12 +34,12 @@ module NNCore
     find_type(:size_t) rescue typedef(:ulong, :size_t)
 
     attach_function :nn_symbol, [:int, :pointer], :string, :blocking => true
-    
+
     attach_function :nn_errno, [], :int, :blocking => true
     attach_function :nn_strerror, [:int], :string, :blocking => true
     attach_function :nn_socket, [:int, :int], :int, :blocking => true
     attach_function :nn_close, [:int], :int, :blocking => true
-    
+
     attach_function :nn_getsockopt, [:int, :int, :int, :pointer, :pointer], :int, :blocking => true
     attach_function :nn_setsockopt, [:int, :int, :int, :pointer, :size_t], :int, :blocking => true
     attach_function :nn_bind, [:int, :string], :int, :blocking => true

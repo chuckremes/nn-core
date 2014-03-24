@@ -23,24 +23,24 @@ module NNCore
           it "returns the number of bytes received" do
             string = "ABC"
             LibNanomsg.nn_send(@sender, string, string.size, 0)
-            
+
             buffer = FFI::MemoryPointer.new(5)
             nbytes = LibNanomsg.nn_recv(@socket, buffer, 5, 0)
             nbytes.should == 3
             buffer.read_string.should == string
           end
         end
-        
+
         context "given no pre-allocated buffer" do
 
           it "returns the number of bytes received and returns the buffer" do
             string = "ABC"
             LibNanomsg.nn_send(@sender, string, string.size, 0)
-            
+
             buffer = FFI::MemoryPointer.new(:pointer)
             nbytes = LibNanomsg.nn_recv(@socket, buffer, NN_MSG, 0)
             nbytes.should == 3
-            
+
             # important to pass +nbytes+ to #read_string since the sent string
             # is not null-terminated
             buffer.get_pointer(0).read_string(nbytes).should == string

@@ -83,17 +83,17 @@ module NNCore
           rc.should == -1
           LibNanomsg.nn_errno.should == EADDRINUSE
         end
-        
+
       end
 
       context "given an invalid file descriptor" do
-        
+
         it "returns -1 and sets nn_errno to EBADF" do
           rc = LibNanomsg.nn_bind(0, "inproc://some_endpoint")
           rc.should == -1
           LibNanomsg.nn_errno.should == EBADF
         end
-        
+
       end
 
     end

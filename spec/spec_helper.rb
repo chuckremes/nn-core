@@ -12,7 +12,7 @@ module NNCore
     :NN_RECONNECT_IVL_MAX => NN_RECONNECT_IVL_MAX,
     :NN_SNDPRIO => NN_SNDPRIO
   }
-  
+
   PROTOCOLS = {
     :NN_PUB => NN_PUB,
     :NN_SUB => NN_SUB,
@@ -25,12 +25,12 @@ module NNCore
     :NN_SURVEYOR => NN_SURVEYOR,
     :NN_RESPONDENT => NN_RESPONDENT
   }
-  
+
   ADDRESS_FAMILIES = {
     :AF_SP => AF_SP,
     :AF_SP_RAW => AF_SP_RAW
   }
-  
+
   # Some protocols support the AF_SP_RAW address family, so we need to skip those
   # tests that are expecting a failure.
   RAW_UNSUPPORTED = []

@@ -82,17 +82,17 @@ module NNCore
           rc = LibNanomsg.nn_connect(@socket, "inproc://some_endpoint")
           rc.should == 2
         end
-        
+
       end
 
       context "given an invalid file descriptor" do
-        
+
         it "returns -1 and sets nn_errno to EBADF" do
           rc = LibNanomsg.nn_connect(0, "inproc://some_endpoint")
           rc.should == -1
           LibNanomsg.nn_errno.should == EBADF
         end
-        
+
       end
 
     end
