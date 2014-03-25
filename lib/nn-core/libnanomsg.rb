@@ -34,6 +34,7 @@ module NNCore
     find_type(:size_t) rescue typedef(:ulong, :size_t)
 
     attach_function :nn_symbol, [:int, :pointer], :string, :blocking => true
+    attach_function :nn_symbol_info, [:int, :pointer, :int], :int, :blocking => true
 
     attach_function :nn_errno, [], :int, :blocking => true
     attach_function :nn_strerror, [:int], :string, :blocking => true

@@ -155,5 +155,42 @@ module NNCore
       end
     end
 
+    # Struct for nn_symbol_info return values
+    module NNSymbolPropertiesLayout
+      def self.included(base)
+        base.class_eval do
+          layout :value, :int,
+          :name, :string,
+          :ns, :int,
+          :type, :int,
+          :unit, :int
+        end
+      end
+    end
+
+    class NNSymbolProperties < FFI::Struct
+      include NNSymbolPropertiesLayout
+
+      def value
+        self[:value]
+      end
+
+      def name
+        self[:name]
+      end
+
+      def ns
+        self[:ns]
+      end
+
+      def type
+        self[:type]
+      end
+
+      def unit
+        self[:unit]
+      end
+    end
+
   end
 end
