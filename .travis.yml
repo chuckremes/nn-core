@@ -3,6 +3,5 @@ rvm:
   - "2.1.1"
 script: bundle exec rspec spec
 before_script:
-  - wget http://download.nanomsg.org/nanomsg-0.3-beta.tar.gz -O /tmp/nanomsg-0.3-beta.tar.gz
-  - tar -xzf /tmp/nanomsg-0.3-beta.tar.gz
-  - cd nanomsg-0.3-beta && ./configure && sudo make install && sudo ldconfig && cd ${TRAVIS_BUILD_DIR}
+  - git clone git://github.com/nanomsg/nanomsg.git
+  - cd nanomsg && ./autogen.sh && ./configure && sudo make install && sudo ldconfig && cd ${TRAVIS_BUILD_DIR}
