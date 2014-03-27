@@ -1,6 +1,8 @@
 nn-core
 -------
 
+[![Build Status](https://travis-ci.org/chuckremes/nn-core.svg?branch=master)](https://travis-ci.org/chuckremes/nn-core)
+
 nn-core is a very thin FFI wrapper around the nanomsg library. The intention is to provide a very
 simple wrapper that hews as close to the C API as possible. Other gems that want to offer a more
 idiomatic API for Ruby should require this gem and build a nice Ruby API with it.
