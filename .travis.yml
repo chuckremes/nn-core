@@ -1,7 +1,13 @@
 language: ruby
 rvm:
-  - "2.1.1"
+  - 1.9.3
+  - 2.0.0
+  - 2.1.1
+  - jruby-head
+  - rbx
 script: bundle exec rspec spec
-before_script:
+matrix:
+  allow_failures:
+before_install:
   - git clone git://github.com/nanomsg/nanomsg.git
   - cd nanomsg && ./autogen.sh && ./configure && sudo make install && sudo ldconfig && cd ${TRAVIS_BUILD_DIR}
