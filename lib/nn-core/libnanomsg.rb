@@ -56,7 +56,7 @@ module NNCore
     attach_function :nn_sendmsg, [:int, :pointer, :int], :int, :blocking => true
     attach_function :nn_recvmsg, [:int, :pointer, :int], :int, :blocking => true
     attach_function :nn_allocmsg, [:size_t, :int], :pointer, :blocking => true
-    attach_function :nn_reallocmsg, [:void, :size_t], :pointer, :blocking => true
+    attach_function :nn_reallocmsg, [:pointer, :size_t], :pointer, :blocking => true
     attach_function :nn_freemsg, [:pointer], :int, :blocking => true
   end
 end
