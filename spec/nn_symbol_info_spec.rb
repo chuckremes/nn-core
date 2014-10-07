@@ -32,7 +32,7 @@ module NNCore
           end
         end
 
-        expect(found_nn_pub).to be_true
+        expect(found_nn_pub).to be_truthy
       end
 
     end
