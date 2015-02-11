@@ -49,6 +49,7 @@ module NNCore
     attach_function :nn_send, [:int, :pointer, :size_t, :int], :int, :blocking => true
     attach_function :nn_recv, [:int, :pointer, :size_t, :int], :int, :blocking => true
     attach_function :nn_term, [], :void, :blocking => true
+    attach_function :nn_device, [:int, :int], :int, :blocking => true
 
     attach_function :nn_poll, [:pointer, :int, :int], :int, :blocking => true
 
