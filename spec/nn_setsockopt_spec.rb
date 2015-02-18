@@ -22,11 +22,11 @@ module NNCore
           it "#{socket_option} overrides the default" do
             @option.write_int(10)
             rc = LibNanomsg.nn_setsockopt(@socket, NN_SOL_SOCKET, SOCKET_OPTIONS[socket_option], @option, 4)
-            rc.should == 0
+            expect(rc).to eq(0)
             rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, SOCKET_OPTIONS[socket_option], @option, @size)
-            rc.should == 0
+            expect(rc).to eq(0)
 
-            @option.read_int.should == 10
+            expect(@option.read_int).to eq(10)
           end
         end
 
@@ -38,8 +38,8 @@ module NNCore
               option = FFI::MemoryPointer.new(:int32)
 
               rc = LibNanomsg.nn_setsockopt(@socket, 100, SOCKET_OPTIONS[socket_option], option, 4)
-              rc.should == -1
-              LibNanomsg.nn_errno.should == ENOPROTOOPT
+              expect(rc).to eq(-1)
+              expect(LibNanomsg.nn_errno).to eq(ENOPROTOOPT)
             end
           end
 
@@ -56,8 +56,8 @@ module NNCore
             size.write_int(4)
 
             rc = LibNanomsg.nn_getsockopt(0, NN_SOL_SOCKET, SOCKET_OPTIONS[socket_option], option, size)
-            rc.should == -1
-            LibNanomsg.nn_errno.should == EBADF
+            expect(rc).to eq(-1)
+            expect(LibNanomsg.nn_errno).to eq(EBADF)
           end
         end
       end

@@ -21,14 +21,14 @@ module NNCore
 
           it "returns the number of bytes sent" do
             nbytes = LibNanomsg.nn_send(@socket, "ABC", 3, 0)
-            nbytes.should == 3
+            expect(nbytes).to eq(3)
           end
         end
 
         context "disconnected from all endpoints" do
           it "returns the number of bytes queued" do
             nbytes = LibNanomsg.nn_send(@socket, "ABC", 3, 0)
-            nbytes.should == 3
+            expect(nbytes).to eq(3)
           end
         end
       end
@@ -37,8 +37,8 @@ module NNCore
 
         it "returns -1 and sets nn_errno to EBADF" do
           rc = LibNanomsg.nn_send(0, "ABC", 3, 0)
-          rc.should == -1
-          LibNanomsg.nn_errno.should == EBADF
+          expect(rc).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EBADF)
         end
 
       end
