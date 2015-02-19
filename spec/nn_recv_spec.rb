@@ -26,8 +26,8 @@ module NNCore
 
             buffer = FFI::MemoryPointer.new(5)
             nbytes = LibNanomsg.nn_recv(@socket, buffer, 5, 0)
-            nbytes.should == 3
-            buffer.read_string.should == string
+            expect(nbytes).to eq(3)
+            expect(buffer.read_string).to eq(string)
           end
         end
 
@@ -39,11 +39,11 @@ module NNCore
 
             buffer = FFI::MemoryPointer.new(:pointer)
             nbytes = LibNanomsg.nn_recv(@socket, buffer, NN_MSG, 0)
-            nbytes.should == 3
+            expect(nbytes).to eq(3)
 
             # important to pass +nbytes+ to #read_string since the sent string
             # is not null-terminated
-            buffer.get_pointer(0).read_string(nbytes).should == string
+            expect(buffer.get_pointer(0).read_string(nbytes)).to eq(string)
           end
         end
       end
@@ -52,8 +52,8 @@ module NNCore
 
         it "returns -1 and sets nn_errno to EBADF" do
           rc = LibNanomsg.nn_send(0, "ABC", 3, 0)
-          rc.should == -1
-          LibNanomsg.nn_errno.should == EBADF
+          expect(rc).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EBADF)
         end
 
       end

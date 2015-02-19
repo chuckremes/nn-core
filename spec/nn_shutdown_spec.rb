@@ -21,15 +21,15 @@ module NNCore
 
           it "returns 0" do
             rc = LibNanomsg.nn_shutdown(@socket, @endpoint)
-            rc.should == 0
+            expect(rc).to eq(0)
           end
         end
 
         context "given an invalid endpoint" do
           it "returns -1 and set nn_errno to EINVAL" do
             rc = LibNanomsg.nn_shutdown(@socket, 0)
-            rc.should == -1
-            LibNanomsg.nn_errno.should == EINVAL
+            expect(rc).to eq(-1)
+            expect(LibNanomsg.nn_errno).to eq(EINVAL)
           end
         end
       end
@@ -38,8 +38,8 @@ module NNCore
 
         it "returns -1 and sets nn_errno to EBADF" do
           rc = LibNanomsg.nn_shutdown(0, 0)
-          rc.should == -1
-          LibNanomsg.nn_errno.should == EBADF
+          expect(rc).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EBADF)
         end
 
       end

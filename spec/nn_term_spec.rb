@@ -17,8 +17,8 @@ module NNCore
         it "makes subsequent calls to nn_send fail with ETERM" do
           LibNanomsg.nn_term
           rc = LibNanomsg.nn_send(0, "ABC", 3, 0)
-          rc.should == -1
-          LibNanomsg.nn_errno.should == ETERM
+          expect(rc).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(ETERM)
         end
 
 #        it "makes subsequent calls to nn_recv fail with ETERM" do

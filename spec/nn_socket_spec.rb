@@ -12,7 +12,7 @@ module NNCore
           it "returns a non-zero file descriptor for the socket" do
             @socket = LibNanomsg.nn_socket(AF_SP, PROTOCOLS[protocol])
 
-            @socket.should == 0
+            expect(@socket).to eq(0)
 
             LibNanomsg.nn_close(@socket)
           end
@@ -24,8 +24,8 @@ module NNCore
             it "returns -1 and sets nn_errno to EINVAL" do
               @socket = LibNanomsg.nn_socket(AF_SP_RAW, PROTOCOLS[protocol])
 
-              @socket.should == -1
-              LibNanomsg.nn_errno.should == EINVAL
+              expect(@socket).to eq(-1)
+              expect(LibNanomsg.nn_errno).to eq(EINVAL)
             end
           end
         end
@@ -34,21 +34,21 @@ module NNCore
 
       context "given an unsupported address family" do
         it "nn_socket returns -1 and sets nn_errno to EAFNOSUPPORT" do
-          LibNanomsg.nn_socket(0, NN_PUB).should == -1
-          LibNanomsg.nn_errno.should == EAFNOSUPPORT
+          expect(LibNanomsg.nn_socket(0, NN_PUB)).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EAFNOSUPPORT)
         end
       end
 
       context "given an unsupported protocol and a supported address family" do
 
         it "AF_SP returns -1 and sets nn_errno to EINVAL" do
-          LibNanomsg.nn_socket(AF_SP, 0).should == -1
-          LibNanomsg.nn_errno.should == EINVAL
+          expect(LibNanomsg.nn_socket(AF_SP, 0)).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EINVAL)
         end
 
         it "AF_SP_RAW returns -1 and sets nn_errno to EINVAL" do
-          LibNanomsg.nn_socket(AF_SP_RAW, 0).should == -1
-          LibNanomsg.nn_errno.should == EINVAL
+          expect(LibNanomsg.nn_socket(AF_SP_RAW, 0)).to eq(-1)
+          expect(LibNanomsg.nn_errno).to eq(EINVAL)
         end
       end
 

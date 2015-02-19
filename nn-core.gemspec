@@ -21,6 +21,6 @@ to build an API using Ruby idioms.}
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "ffi"
-  s.add_development_dependency "rspec", ["~> 2.6"]
+  s.add_development_dependency "rspec", ["~> 3.2"]
   s.add_development_dependency "rake"
 end

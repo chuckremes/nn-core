@@ -19,50 +19,50 @@ module NNCore
 
         it "NN_LINGER returns a default of 1000" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_LINGER, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 1000
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(1000)
         end
 
         it "NN_SNDBUF returns a default of 128KB" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_SNDBUF, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 131072
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(131072)
         end
 
         it "NN_RCVBUF returns a default of 128KB" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_RCVBUF, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 131072
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(131072)
         end
 
         it "NN_SNDTIMEO returns a default of -1" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_SNDTIMEO, @option, @size)
-          rc.should == 0
-          @option.read_int.should == -1
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(-1)
         end
 
         it "NN_RCVTIMEO returns a default of -1" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_RCVTIMEO, @option, @size)
-          rc.should == 0
-          @option.read_int.should == -1
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(-1)
         end
 
         it "NN_RECONNECT_IVL returns a default of 100 (units are milliseconds)" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_RECONNECT_IVL, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 100
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(100)
         end
 
         it "NN_RECONNECT_IVL_MAX returns a default of 0 (units are milliseconds)" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_RECONNECT_IVL_MAX, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 0
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(0)
         end
 
         it "NN_SNDPRIO returns a default of 8" do
           rc = LibNanomsg.nn_getsockopt(@socket, NN_SOL_SOCKET, NN_SNDPRIO, @option, @size)
-          rc.should == 0
-          @option.read_int.should == 8
+          expect(rc).to eq(0)
+          expect(@option.read_int).to eq(8)
         end
 
 
@@ -75,8 +75,8 @@ module NNCore
               size.write_int(4)
 
               rc = LibNanomsg.nn_getsockopt(@socket, 100, SOCKET_OPTIONS[socket_option], option, size)
-              rc.should == -1
-              LibNanomsg.nn_errno.should == ENOPROTOOPT
+              expect(rc).to eq(-1)
+              expect(LibNanomsg.nn_errno).to eq(ENOPROTOOPT)
             end
           end
 
@@ -93,8 +93,8 @@ module NNCore
             size.write_int(4)
 
             rc = LibNanomsg.nn_getsockopt(0, NN_SOL_SOCKET, SOCKET_OPTIONS[socket_option], option, size)
-            rc.should == -1
-            LibNanomsg.nn_errno.should == EBADF
+            expect(rc).to eq(-1)
+            expect(LibNanomsg.nn_errno).to eq(EBADF)
           end
         end
       end
