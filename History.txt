@@ -1,3 +1,12 @@
+20140219 / 0.3.0
+  * Support nn_poll function for checking socket reading/writing availability
+
+  * Support nn_symbol_info function
+
+  * Support reallocmsg function for reallocating messages previously allocated by nn_allocmsg
+
+  * Support nn_device for messages forwarding between two sockets
+
 20130327 / 0.2.0
 	* Support nn_symbol function for setting up all constants in the binding.
 	
