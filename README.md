@@ -14,11 +14,15 @@ http://nanomsg.org
 
 1. Add this line to your `Gemfile`:
 
+    ```ruby
     gem 'nn-core'
+    ```
 
 2. Install the gem using bundler:
 
+    ```shell
     bundle install
+    ```
 
 3. In your code, do:
 
@@ -30,19 +34,27 @@ http://nanomsg.org
 
 1. Clone this repository
 
+    ```shell
     git clone https://github.com/chuckremes/nn-core.git
+    ```
 
 2. Install the gem dependencies:
 
+    ```shell
     bundle install
+    ```
 
 3. Build libnanomsg:
 
-    pushd ext && bundle exec rake && popd
+    ```shell
+    pushd ext && rake && popd
+    ```
 
 4. Run the tests to ensure everything works fine:
 
+    ```shell
     bundle exec rake spec
+    ```
 
 # License
 
