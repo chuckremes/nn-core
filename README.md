@@ -1,5 +1,4 @@
-nn-core
--------
+# nn-core
 
 [![Build Status](https://travis-ci.org/chuckremes/nn-core.svg?branch=master)](https://travis-ci.org/chuckremes/nn-core)
 
@@ -11,29 +10,41 @@ For more information on nanomsg, please visit its website:
 
 http://nanomsg.org
 
-Installation
-------------
+# Bundler Installation
 
-1. Make sure to build libnanomsg first by following these instructions:
+1. Add this line to your `Gemfile`:
 
-http://github.com/250bpm/nanomsg
+    gem 'nn-core'
 
-2. git clone git://github.com/chuckremes/nn-core.git
+2. Install the gem using bundler:
 
-3. cd nn-core
+    bundle install
 
-4. ruby -S gem build nn-core.gemspec
+3. In your code, do:
 
-5. ruby -S gem install nn-core*.gem
+    ```ruby
+    require "nn-core"
+    ```
 
-6. In your code, do:
+# Manual Installation
 
-```ruby
-require "nn-core"
-```
+1. Clone this repository
 
-License
--------
+    git clone https://github.com/chuckremes/nn-core.git
+
+2. Install the gem dependencies:
+
+    bundle install
+
+3. Build libnanomsg:
+
+    pushd ext && bundle exec rake && popd
+
+4. Run the tests to ensure everything works fine:
+
+    bundle exec rake spec
+
+# License
 
 (The MIT License)
 
