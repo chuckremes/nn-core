@@ -8,3 +8,4 @@ rvm:
 script: bundle exec rspec spec
 matrix:
   allow_failures:
+before_install: pushd ext && bundle exec rake && popd
