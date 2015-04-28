@@ -1,0 +1,5 @@
+desc "Compile the nanomsg native C library"
+task :default do
+  system("git clone https://github.com/nanomsg/nanomsg.git")
+  system("cd nanomsg && git checkout 0.5-beta && ./autogen.sh && ./configure && make")
+end

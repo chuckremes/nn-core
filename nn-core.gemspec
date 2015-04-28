@@ -22,5 +22,6 @@ to build an API using Ruby idioms.}
 
   s.add_runtime_dependency "ffi"
   s.add_development_dependency "rspec", ["~> 3.2"]
-  s.add_development_dependency "rake"
+  s.add_dependency "rake"
+  s.extensions = %w(ext/Rakefile)
 end

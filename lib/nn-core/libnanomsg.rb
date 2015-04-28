@@ -6,7 +6,7 @@ module NNCore
     begin
       # bias the library discovery to a path inside the gem first, then
       # to the usual system paths
-      inside_gem = File.join(File.dirname(__FILE__), '..', '..', 'ext')
+      inside_gem = File.join(File.dirname(__FILE__), '..', '..', 'ext', 'nanomsg', '.libs')
       local_path = FFI::Platform::IS_WINDOWS ? ENV['PATH'].split(';') : ENV['PATH'].split(':')
       library_name = "libnanomsg"
       LIB_PATHS = [
